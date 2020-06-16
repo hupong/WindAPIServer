@@ -8,7 +8,7 @@ Complie this project and then copy the exe file to the machine which have setupe
 Run it. And then you can send the command below by socket client.
 
 ```
-edb|M0024135,M5206729,M0024136|ED-1Y|2020-06-16| via socket
+edb|M0024135,M5206729,M0024136|ED-1Y|2020-06-16|
 ```
 
 ```
