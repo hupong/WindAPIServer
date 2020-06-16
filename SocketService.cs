@@ -110,16 +110,27 @@ namespace SocketService
                     ClientProSocketList.TryTake(out prosock);
                     return;
                 }
-                //接受到的数据
-                string fromClientMsg = Encoding.Default.GetString(data, 0, realen);
-                Console.WriteLine(string.Format("接收到 {0} 的消息是：{1}", prosock.RemoteEndPoint.ToString(), fromClientMsg));
-                // string[] args = fromClientMsg.Split('|');
-                string args = fromClientMsg;
-                string oData = "";
-                oData = DataDrive(args);
-                prosock.Send(Encoding.Default.GetBytes(string.Format("{0}", oData)));
-                // prosock.Send(Encoding.Default.GetBytes("\r\n"));
-                // prosock.Send(Encoding.Default.GetBytes(string.Format("接收到 {0} 的消息是：{1}\r\n", prosock.RemoteEndPoint.ToString(), fromClientMsg)));
+                try
+                {
+                    //接受到的数据
+                    string fromClientMsg = Encoding.Default.GetString(data, 0, realen);
+                    Console.WriteLine(string.Format("接收到 {0} 的消息是：{1}", prosock.RemoteEndPoint.ToString(), fromClientMsg));
+                    // string[] args = fromClientMsg.Split('|');
+                    string args = fromClientMsg;
+                    string oData = "";
+                    oData = DataDrive(args);
+                    prosock.Send(Encoding.Default.GetBytes(string.Format("{0}", oData)));
+                    // prosock.Send(Encoding.Default.GetBytes("\r\n"));
+                    // prosock.Send(Encoding.Default.GetBytes(string.Format("接收到 {0} 的消息是：{1}\r\n", prosock.RemoteEndPoint.ToString(), fromClientMsg)));
+                }
+                catch (Exception ex)
+                {
+                    //异常退出
+                    Console.WriteLine(string.Format("设备 {0} 请求异常", prosock.RemoteEndPoint.ToString()));
+                    StopConnecte(prosock);
+                    Console.WriteLine(ex.StackTrace);
+                    return;
+                }
             }
         }
         private void StopConnecte(Socket prosock)
