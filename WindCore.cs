@@ -63,7 +63,7 @@ namespace WindCore
                 string windCodes = args[1];
                 string startTime = args[2];
                 string endTime = args[3];
-                string options = "";
+                string options = "Days=Alldays";
                 wd = windFunc(windCodes, startTime, endTime, options);
             ///*
             }
@@ -82,7 +82,7 @@ namespace WindCore
                 string fields = args[2];
                 string startTime = args[3];
                 string endTime = args[4];
-                string options = "";
+                string options = "Days=Alldays";
                 wd = windFunc(windCodes, fields, startTime, endTime, options);
             }
             else
